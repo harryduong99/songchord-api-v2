@@ -3,7 +3,6 @@
 package model
 
 type Comment struct {
-	ID      string `json:"id"`
 	Email   string `json:"email"`
 	Name    string `json:"name"`
 	Content string `json:"content"`

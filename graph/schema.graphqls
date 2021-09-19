@@ -24,7 +24,6 @@ type Song {
 }
 
 type Comment {
-  id: ID!
   email: String!
   name: String!
   content: String!
@@ -58,5 +57,5 @@ input NewComment {
 type Mutation {
   createTodo(input: NewTodo!): Todo!
   createSong(input: NewSong!): Song!
-  createComment(comment: NewComment!): Comment
+  createComment(comment: NewComment!): Boolean
 }

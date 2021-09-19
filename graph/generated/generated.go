@@ -46,7 +46,6 @@ type ComplexityRoot struct {
 	Comment struct {
 		Content func(childComplexity int) int
 		Email   func(childComplexity int) int
-		ID      func(childComplexity int) int
 		Name    func(childComplexity int) int
 	}
 
@@ -87,7 +86,7 @@ type ComplexityRoot struct {
 type MutationResolver interface {
 	CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error)
 	CreateSong(ctx context.Context, input model.NewSong) (*model.Song, error)
-	CreateComment(ctx context.Context, comment model.NewComment) (*model.Comment, error)
+	CreateComment(ctx context.Context, comment model.NewComment) (*bool, error)
 }
 type QueryResolver interface {
 	Todos(ctx context.Context) ([]*model.Todo, error)
@@ -123,13 +122,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Comment.Email(childComplexity), true
-
-	case "Comment.id":
-		if e.complexity.Comment.ID == nil {
-			break
-		}
-
-		return e.complexity.Comment.ID(childComplexity), true
 
 	case "Comment.name":
 		if e.complexity.Comment.Name == nil {
@@ -374,7 +366,6 @@ type Song {
 }
 
 type Comment {
-  id: ID!
   email: String!
   name: String!
   content: String!
@@ -408,7 +399,7 @@ input NewComment {
 type Mutation {
   createTodo(input: NewTodo!): Todo!
   createSong(input: NewSong!): Song!
-  createComment(comment: NewComment!): Comment
+  createComment(comment: NewComment!): Boolean
 }
 `, BuiltIn: false},
 }
@@ -530,41 +521,6 @@ func (ec *executionContext) field___Type_fields_args(ctx context.Context, rawArg
 // endregion ************************** directives.gotpl **************************
 
 // region    **************************** field.gotpl *****************************
-
-func (ec *executionContext) _Comment_id(ctx context.Context, field graphql.CollectedField, obj *model.Comment) (ret graphql.Marshaler) {
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	fc := &graphql.FieldContext{
-		Object:     "Comment",
-		Field:      field,
-		Args:       nil,
-		IsMethod:   false,
-		IsResolver: false,
-	}
-
-	ctx = graphql.WithFieldContext(ctx, fc)
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNID2string(ctx, field.Selections, res)
-}
 
 func (ec *executionContext) _Comment_email(ctx context.Context, field graphql.CollectedField, obj *model.Comment) (ret graphql.Marshaler) {
 	defer func() {
@@ -789,9 +745,9 @@ func (ec *executionContext) _Mutation_createComment(ctx context.Context, field g
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*model.Comment)
+	res := resTmp.(*bool)
 	fc.Result = res
-	return ec.marshalOComment2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐComment(ctx, field.Selections, res)
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_todos(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -2660,11 +2616,6 @@ func (ec *executionContext) _Comment(ctx context.Context, sel ast.SelectionSet, 
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Comment")
-		case "id":
-			out.Values[i] = ec._Comment_id(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
 		case "email":
 			out.Values[i] = ec._Comment_email(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
@@ -3693,13 +3644,6 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 		return graphql.Null
 	}
 	return graphql.MarshalBoolean(*v)
-}
-
-func (ec *executionContext) marshalOComment2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐComment(ctx context.Context, sel ast.SelectionSet, v *model.Comment) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._Comment(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOSong2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx context.Context, sel ast.SelectionSet, v *model.Song) graphql.Marshaler {

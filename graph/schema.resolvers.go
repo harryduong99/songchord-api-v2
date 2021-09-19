@@ -9,6 +9,7 @@ import (
 
 	"github.com/duongnam99/songchord-api-v2/graph/generated"
 	"github.com/duongnam99/songchord-api-v2/graph/model"
+	"github.com/duongnam99/songchord-api-v2/repository/commentRepo"
 	"github.com/duongnam99/songchord-api-v2/repository/songRepo"
 )
 
@@ -20,8 +21,15 @@ func (r *mutationResolver) CreateSong(ctx context.Context, input model.NewSong) 
 	panic(fmt.Errorf("not implemented"))
 }
 
-func (r *mutationResolver) CreateComment(ctx context.Context, comment model.NewComment) (*model.Comment, error) {
-	panic(fmt.Errorf("not implemented"))
+func (r *mutationResolver) CreateComment(ctx context.Context, comment model.NewComment) (*bool, error) {
+	/*
+		mutation {
+			createComment(comment:{name:"harry", email:"harry.duong99@gmail.com", content: "test comment", songId: "613cfd22fcc103b39ba31ebc"})
+		}
+	*/
+	result, err := commentRepo.CreateComment(context.Background(), comment)
+
+	return &result, err
 }
 
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
