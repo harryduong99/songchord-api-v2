@@ -12,7 +12,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
-	"github.com/duongnam99/songchord-api-v2/graph/model"
+	"github.com/harryduong99/songchord-api-v2/graph/model"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
 )
@@ -415,7 +415,7 @@ func (ec *executionContext) field_Mutation_createComment_args(ctx context.Contex
 	var arg0 model.NewComment
 	if tmp, ok := rawArgs["comment"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("comment"))
-		arg0, err = ec.unmarshalNNewComment2githubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐNewComment(ctx, tmp)
+		arg0, err = ec.unmarshalNNewComment2githubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐNewComment(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -430,7 +430,7 @@ func (ec *executionContext) field_Mutation_createSong_args(ctx context.Context, 
 	var arg0 model.NewSong
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNNewSong2githubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐNewSong(ctx, tmp)
+		arg0, err = ec.unmarshalNNewSong2githubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐNewSong(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -445,7 +445,7 @@ func (ec *executionContext) field_Mutation_createTodo_args(ctx context.Context, 
 	var arg0 model.NewTodo
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNNewTodo2githubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐNewTodo(ctx, tmp)
+		arg0, err = ec.unmarshalNNewTodo2githubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐNewTodo(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -666,7 +666,7 @@ func (ec *executionContext) _Mutation_createTodo(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Todo)
 	fc.Result = res
-	return ec.marshalNTodo2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐTodo(ctx, field.Selections, res)
+	return ec.marshalNTodo2ᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐTodo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_createSong(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -708,7 +708,7 @@ func (ec *executionContext) _Mutation_createSong(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Song)
 	fc.Result = res
-	return ec.marshalNSong2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx, field.Selections, res)
+	return ec.marshalNSong2ᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_createComment(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -782,7 +782,7 @@ func (ec *executionContext) _Query_todos(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.([]*model.Todo)
 	fc.Result = res
-	return ec.marshalNTodo2ᚕᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐTodoᚄ(ctx, field.Selections, res)
+	return ec.marshalNTodo2ᚕᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐTodoᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_songs(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -817,7 +817,7 @@ func (ec *executionContext) _Query_songs(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.([]*model.Song)
 	fc.Result = res
-	return ec.marshalNSong2ᚕᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSongᚄ(ctx, field.Selections, res)
+	return ec.marshalNSong2ᚕᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSongᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_song(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -856,7 +856,7 @@ func (ec *executionContext) _Query_song(ctx context.Context, field graphql.Colle
 	}
 	res := resTmp.(*model.Song)
 	fc.Result = res
-	return ec.marshalOSong2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx, field.Selections, res)
+	return ec.marshalOSong2ᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -1137,7 +1137,7 @@ func (ec *executionContext) _Song_comment(ctx context.Context, field graphql.Col
 	}
 	res := resTmp.([]*model.Comment)
 	fc.Result = res
-	return ec.marshalNComment2ᚕᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐCommentᚄ(ctx, field.Selections, res)
+	return ec.marshalNComment2ᚕᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐCommentᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Todo_id(ctx context.Context, field graphql.CollectedField, obj *model.Todo) (ret graphql.Marshaler) {
@@ -1277,7 +1277,7 @@ func (ec *executionContext) _Todo_user(ctx context.Context, field graphql.Collec
 	}
 	res := resTmp.(*model.User)
 	fc.Result = res
-	return ec.marshalNUser2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
+	return ec.marshalNUser2ᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _User_id(ctx context.Context, field graphql.CollectedField, obj *model.User) (ret graphql.Marshaler) {
@@ -3140,7 +3140,7 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 	return res
 }
 
-func (ec *executionContext) marshalNComment2ᚕᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐCommentᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Comment) graphql.Marshaler {
+func (ec *executionContext) marshalNComment2ᚕᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐCommentᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Comment) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -3164,7 +3164,7 @@ func (ec *executionContext) marshalNComment2ᚕᚖgithubᚗcomᚋduongnam99ᚋso
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNComment2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐComment(ctx, sel, v[i])
+			ret[i] = ec.marshalNComment2ᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐComment(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -3184,7 +3184,7 @@ func (ec *executionContext) marshalNComment2ᚕᚖgithubᚗcomᚋduongnam99ᚋso
 	return ret
 }
 
-func (ec *executionContext) marshalNComment2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐComment(ctx context.Context, sel ast.SelectionSet, v *model.Comment) graphql.Marshaler {
+func (ec *executionContext) marshalNComment2ᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐComment(ctx context.Context, sel ast.SelectionSet, v *model.Comment) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -3209,26 +3209,26 @@ func (ec *executionContext) marshalNID2string(ctx context.Context, sel ast.Selec
 	return res
 }
 
-func (ec *executionContext) unmarshalNNewComment2githubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐNewComment(ctx context.Context, v interface{}) (model.NewComment, error) {
+func (ec *executionContext) unmarshalNNewComment2githubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐNewComment(ctx context.Context, v interface{}) (model.NewComment, error) {
 	res, err := ec.unmarshalInputNewComment(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNNewSong2githubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐNewSong(ctx context.Context, v interface{}) (model.NewSong, error) {
+func (ec *executionContext) unmarshalNNewSong2githubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐNewSong(ctx context.Context, v interface{}) (model.NewSong, error) {
 	res, err := ec.unmarshalInputNewSong(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNNewTodo2githubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐNewTodo(ctx context.Context, v interface{}) (model.NewTodo, error) {
+func (ec *executionContext) unmarshalNNewTodo2githubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐNewTodo(ctx context.Context, v interface{}) (model.NewTodo, error) {
 	res, err := ec.unmarshalInputNewTodo(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNSong2githubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx context.Context, sel ast.SelectionSet, v model.Song) graphql.Marshaler {
+func (ec *executionContext) marshalNSong2githubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx context.Context, sel ast.SelectionSet, v model.Song) graphql.Marshaler {
 	return ec._Song(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNSong2ᚕᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSongᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Song) graphql.Marshaler {
+func (ec *executionContext) marshalNSong2ᚕᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSongᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Song) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -3252,7 +3252,7 @@ func (ec *executionContext) marshalNSong2ᚕᚖgithubᚗcomᚋduongnam99ᚋsongc
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNSong2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx, sel, v[i])
+			ret[i] = ec.marshalNSong2ᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -3272,7 +3272,7 @@ func (ec *executionContext) marshalNSong2ᚕᚖgithubᚗcomᚋduongnam99ᚋsongc
 	return ret
 }
 
-func (ec *executionContext) marshalNSong2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx context.Context, sel ast.SelectionSet, v *model.Song) graphql.Marshaler {
+func (ec *executionContext) marshalNSong2ᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx context.Context, sel ast.SelectionSet, v *model.Song) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -3297,11 +3297,11 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 	return res
 }
 
-func (ec *executionContext) marshalNTodo2githubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐTodo(ctx context.Context, sel ast.SelectionSet, v model.Todo) graphql.Marshaler {
+func (ec *executionContext) marshalNTodo2githubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐTodo(ctx context.Context, sel ast.SelectionSet, v model.Todo) graphql.Marshaler {
 	return ec._Todo(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNTodo2ᚕᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐTodoᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Todo) graphql.Marshaler {
+func (ec *executionContext) marshalNTodo2ᚕᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐTodoᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Todo) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -3325,7 +3325,7 @@ func (ec *executionContext) marshalNTodo2ᚕᚖgithubᚗcomᚋduongnam99ᚋsongc
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNTodo2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐTodo(ctx, sel, v[i])
+			ret[i] = ec.marshalNTodo2ᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐTodo(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -3345,7 +3345,7 @@ func (ec *executionContext) marshalNTodo2ᚕᚖgithubᚗcomᚋduongnam99ᚋsongc
 	return ret
 }
 
-func (ec *executionContext) marshalNTodo2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐTodo(ctx context.Context, sel ast.SelectionSet, v *model.Todo) graphql.Marshaler {
+func (ec *executionContext) marshalNTodo2ᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐTodo(ctx context.Context, sel ast.SelectionSet, v *model.Todo) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -3355,7 +3355,7 @@ func (ec *executionContext) marshalNTodo2ᚖgithubᚗcomᚋduongnam99ᚋsongchor
 	return ec._Todo(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNUser2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
+func (ec *executionContext) marshalNUser2ᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -3646,7 +3646,7 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	return graphql.MarshalBoolean(*v)
 }
 
-func (ec *executionContext) marshalOSong2ᚖgithubᚗcomᚋduongnam99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx context.Context, sel ast.SelectionSet, v *model.Song) graphql.Marshaler {
+func (ec *executionContext) marshalOSong2ᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSong(ctx context.Context, sel ast.SelectionSet, v *model.Song) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}

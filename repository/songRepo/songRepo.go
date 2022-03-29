@@ -4,9 +4,9 @@ import (
 	"context"
 	"log"
 
-	"github.com/duongnam99/songchord-api-v2/graph/model"
+	"github.com/harryduong99/songchord-api-v2/graph/model"
 
-	"github.com/duongnam99/songchord-api-v2/driver"
+	"github.com/harryduong99/songchord-api-v2/driver"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"

@@ -3,10 +3,10 @@ package commentRepo
 import (
 	"context"
 
-	"github.com/duongnam99/songchord-api-v2/graph/model"
+	"github.com/harryduong99/songchord-api-v2/graph/model"
 
-	"github.com/duongnam99/songchord-api-v2/config"
-	"github.com/duongnam99/songchord-api-v2/driver"
+	"github.com/harryduong99/songchord-api-v2/config"
+	"github.com/harryduong99/songchord-api-v2/driver"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

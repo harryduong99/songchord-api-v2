@@ -7,10 +7,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/duongnam99/songchord-api-v2/graph/generated"
-	"github.com/duongnam99/songchord-api-v2/graph/model"
-	"github.com/duongnam99/songchord-api-v2/repository/commentRepo"
-	"github.com/duongnam99/songchord-api-v2/repository/songRepo"
+	"github.com/harryduong99/songchord-api-v2/graph/generated"
+	"github.com/harryduong99/songchord-api-v2/graph/model"
+	"github.com/harryduong99/songchord-api-v2/repository/commentRepo"
+	"github.com/harryduong99/songchord-api-v2/repository/songRepo"
 )
 
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {

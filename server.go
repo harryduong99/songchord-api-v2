@@ -5,13 +5,13 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/duongnam99/songchord-api-v2/driver"
+	"github.com/harryduong99/songchord-api-v2/driver"
 	"github.com/joho/godotenv"
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/duongnam99/songchord-api-v2/graph"
-	"github.com/duongnam99/songchord-api-v2/graph/generated"
+	"github.com/harryduong99/songchord-api-v2/graph"
+	"github.com/harryduong99/songchord-api-v2/graph/generated"
 )
 
 const defaultPort = "8080"

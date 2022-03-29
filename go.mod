@@ -1,4 +1,4 @@
-module github.com/duongnam99/songchord-api-v2
+module github.com/harryduong99/songchord-api-v2
 
 go 1.17
 
