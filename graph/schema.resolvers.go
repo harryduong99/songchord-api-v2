@@ -41,6 +41,16 @@ func (r *queryResolver) Songs(ctx context.Context) ([]*model.Song, error) {
 }
 
 func (r *queryResolver) Song(ctx context.Context, title string) (*model.Song, error) {
+	// query getSong($title: String!){
+	// 	song(title: $title) {
+	// 		content,
+	// 		author
+	// 	}
+	// }
+
+	// {
+	// 	"title": "Minhnam"
+	// }
 	song, err := songRepo.GetSongByName(context.Background(), title)
 
 	return &song, err
