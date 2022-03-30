@@ -30,14 +30,8 @@ type Comment {
 }
 
 type Query {
-  todos: [Todo!]!
   songs: [Song!]!
   song(title: String!): Song
-}
-
-input NewTodo {
-  text: String!
-  userId: String!
 }
 
 input NewSong {
@@ -55,7 +49,6 @@ input NewComment {
 }
 
 type Mutation {
-  createTodo(input: NewTodo!): Todo!
   createSong(input: NewSong!): Song!
   createComment(comment: NewComment!): Boolean
 }

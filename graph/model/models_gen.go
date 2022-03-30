@@ -22,11 +22,6 @@ type NewSong struct {
 	Category string `json:"category"`
 }
 
-type NewTodo struct {
-	Text   string `json:"text"`
-	UserID string `json:"userId"`
-}
-
 type Song struct {
 	ID       string     `json:"id"`
 	Title    string     `json:"title"`

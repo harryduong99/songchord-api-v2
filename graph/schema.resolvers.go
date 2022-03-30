@@ -13,10 +13,6 @@ import (
 	"github.com/harryduong99/songchord-api-v2/repository/songRepo"
 )
 
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
-}
-
 func (r *mutationResolver) CreateSong(ctx context.Context, input model.NewSong) (*model.Song, error) {
 	panic(fmt.Errorf("not implemented"))
 }
@@ -30,10 +26,6 @@ func (r *mutationResolver) CreateComment(ctx context.Context, comment model.NewC
 	result, err := commentRepo.CreateComment(context.Background(), comment)
 
 	return &result, err
-}
-
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
 }
 
 func (r *queryResolver) Songs(ctx context.Context) ([]*model.Song, error) {
