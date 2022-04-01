@@ -2,6 +2,9 @@
 
 package model
 
+import (
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 type Comment struct {
 	Email   string `json:"email"`
 	Name    string `json:"name"`
@@ -23,19 +26,12 @@ type NewSong struct {
 }
 
 type Song struct {
-	ID       string     `json:"id"`
+	ID       primitive.ObjectID `bson:"_id" json:"id"`
 	Title    string     `json:"title"`
 	Content  string     `json:"content"`
 	Author   string     `json:"author"`
 	Category string     `json:"category"`
 	Comment  []*Comment `json:"comment"`
-}
-
-type Todo struct {
-	ID   string `json:"id"`
-	Text string `json:"text"`
-	Done bool   `json:"done"`
-	User *User  `json:"user"`
 }
 
 type User struct {

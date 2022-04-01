@@ -2,20 +2,14 @@
 #
 # https://gqlgen.com/getting-started/
 
-type Todo {
-  id: ID!
-  text: String!
-  done: Boolean!
-  user: User!
-}
-
 type User {
   id: ID!
   name: String!
 }
 
 type Song {
-  id: ID!
+  # ID       primitive.ObjectID `bson:"_id" json:"id"`
+  id: String!
   title: String!
   content: String!
   author: String!
@@ -27,13 +21,6 @@ type Comment {
   email: String!
   name: String!
   content: String!
-}
-
-type Query {
-  songs(start: Int!, limit: Int!): [Song!]!
-  song(title: String!): Song
-  songIds: [String!]
-  songById(id: ID!): Song
 }
 
 input NewSong {
@@ -53,4 +40,11 @@ input NewComment {
 type Mutation {
   createSong(input: NewSong!): Song!
   createComment(comment: NewComment!): Boolean
+}
+
+type Query {
+  songs(start: Int!, limit: Int!): [Song!]!
+  song(title: String!): Song
+  songIds: [String!]
+  songById(id: ID!): Song
 }

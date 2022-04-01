@@ -51,7 +51,6 @@ func GetSongList(ctx context.Context, start int, limit int) ([]*model.Song, erro
 func GetSongIds(ctx context.Context) ([]string, error) {
 	var song model.Song
 	var songIds []string
-
 	option := options.Find()
 	cur, err := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").Find(ctx, bson.M{}, option)
 
@@ -62,7 +61,7 @@ func GetSongIds(ctx context.Context) ([]string, error) {
 	}
 	for cur.Next(ctx) {
 		cur.Decode(&song)
-		songIds = append(songIds, song.ID)
+		songIds = append(songIds, song.ID.Hex())
 	}
 
 	return songIds, nil
