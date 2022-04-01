@@ -30,7 +30,7 @@ type Comment {
 }
 
 type Query {
-  songs: [Song!]!
+  songs(start: Int!, limit: Int!): [Song!]!
   song(title: String!): Song
   songIds: [String!]
   songById(id: ID!): Song

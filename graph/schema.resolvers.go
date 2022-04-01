@@ -28,8 +28,10 @@ func (r *mutationResolver) CreateComment(ctx context.Context, comment model.NewC
 	return &result, err
 }
 
-func (r *queryResolver) Songs(ctx context.Context) ([]*model.Song, error) {
-	panic(fmt.Errorf("not implemented"))
+func (r *queryResolver) Songs(ctx context.Context, start int, limit int) ([]*model.Song, error) {
+	result, err := songRepo.GetSongList(context.Background(), start, limit)
+
+	return result, err
 }
 
 func (r *queryResolver) Song(ctx context.Context, title string) (*model.Song, error) {

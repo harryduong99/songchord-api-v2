@@ -26,22 +26,23 @@ func GetSongById(ctx context.Context, id string) (model.Song, error) {
 	return song, error
 }
 
-func GetSongList(ctx context.Context, limit int) (result interface{}) {
+func GetSongList(ctx context.Context, start int, limit int) ([]*model.Song, error) {
 	var song model.Song
-	var songs []model.Song
+	var songs []*model.Song
 
+	// todo: need to add start point
 	option := options.Find().SetLimit(int64(limit))
 	cur, err := driver.Mongo.ConnectCollection("song_chords", "songs").Find(ctx, bson.M{}, option)
 	defer cur.Close(ctx)
 	if err != nil {
 		log.Println(err)
-		return nil
+		return nil, err
 	}
 	for cur.Next(ctx) {
 		cur.Decode(&song)
-		songs = append(songs, song)
+		songs = append(songs, &song)
 	}
-	return songs
+	return songs, nil
 }
 
 func GetSongIds(ctx context.Context) ([]string, error) {
