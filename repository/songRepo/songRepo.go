@@ -12,6 +12,8 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+const numberPerPage = 15
+
 func GetSongByName(ctx context.Context, title string) (model.Song, error) {
 	var song model.Song
 	data := driver.Mongo.ConnectCollection("song_chords", "songs").FindOne(ctx, bson.M{"title": title})
@@ -30,8 +32,8 @@ func GetSongList(ctx context.Context, start int, limit int) ([]*model.Song, erro
 	var song model.Song
 	var songs []*model.Song
 
-	// todo: need to add start point
-	option := options.Find().SetLimit(int64(limit))
+	skip := int64(start-1) * numberPerPage
+	option := options.Find().SetSkip(skip).SetLimit(int64(limit))
 	cur, err := driver.Mongo.ConnectCollection("song_chords", "songs").Find(ctx, bson.M{}, option)
 	defer cur.Close(ctx)
 	if err != nil {
