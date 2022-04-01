@@ -48,6 +48,17 @@ func (r *queryResolver) Song(ctx context.Context, title string) (*model.Song, er
 	return &song, err
 }
 
+func (r *queryResolver) SongIds(ctx context.Context) ([]string, error) {
+	result, err := songRepo.GetSongIds(context.Background())
+
+	return result, err
+}
+
+func (r *queryResolver) SongByID(ctx context.Context, id string) (*model.Song, error) {
+	song, err := songRepo.GetSongById(context.Background(), id)
+	return &song, err
+}
+
 // Mutation returns generated.MutationResolver implementation.
 func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
 

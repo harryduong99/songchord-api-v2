@@ -32,6 +32,8 @@ type Comment {
 type Query {
   songs: [Song!]!
   song(title: String!): Song
+  songIds: [String!]
+  songById(id: ID!): Song
 }
 
 input NewSong {
