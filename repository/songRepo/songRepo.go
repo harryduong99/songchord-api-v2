@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 
+	"github.com/harryduong99/songchord-api-v2/config"
 	"github.com/harryduong99/songchord-api-v2/graph/model"
 
 	"github.com/harryduong99/songchord-api-v2/driver"
@@ -16,14 +17,14 @@ const numberPerPage = 15
 
 func GetSongByName(ctx context.Context, title string) (model.Song, error) {
 	var song model.Song
-	data := driver.Mongo.ConnectCollection("song_chords", "songs").FindOne(ctx, bson.M{"title": title})
+	data := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").FindOne(ctx, bson.M{"title": title})
 	error := data.Decode(&song)
 	return song, error
 }
 
 func GetSongById(ctx context.Context, id string) (model.Song, error) {
 	var song model.Song
-	data := driver.Mongo.ConnectCollection("song_chords", "songs").FindOne(ctx, bson.M{"id": id})
+	data := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").FindOne(ctx, bson.M{"id": id})
 	error := data.Decode(&song)
 	return song, error
 }
@@ -34,7 +35,7 @@ func GetSongList(ctx context.Context, start int, limit int) ([]*model.Song, erro
 
 	skip := int64(start-1) * numberPerPage
 	option := options.Find().SetSkip(skip).SetLimit(int64(limit))
-	cur, err := driver.Mongo.ConnectCollection("song_chords", "songs").Find(ctx, bson.M{}, option)
+	cur, err := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").Find(ctx, bson.M{}, option)
 	defer cur.Close(ctx)
 	if err != nil {
 		log.Println(err)
@@ -52,7 +53,7 @@ func GetSongIds(ctx context.Context) ([]string, error) {
 	var songIds []string
 
 	option := options.Find()
-	cur, err := driver.Mongo.ConnectCollection("song_chords", "songs").Find(ctx, bson.M{}, option)
+	cur, err := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").Find(ctx, bson.M{}, option)
 
 	defer cur.Close(ctx)
 	if err != nil {
@@ -68,13 +69,13 @@ func GetSongIds(ctx context.Context) ([]string, error) {
 }
 
 func InsertSong(ctx context.Context, song model.Song) error {
-	_, err := driver.Mongo.ConnectCollection("song_chords", "songs").InsertOne(ctx, song)
+	_, err := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").InsertOne(ctx, song)
 	return err
 }
 
 func UpdateSong(ctx context.Context, song model.Song) error {
 	var songModel model.Song
-	col := driver.Mongo.ConnectCollection("song_chords", "songs")
+	col := driver.Mongo.ConnectCollection(config.DB_NAME, "songs")
 	filter := bson.M{"title": song.Title}
 
 	// get existing comment
@@ -88,10 +89,10 @@ func UpdateSong(ctx context.Context, song model.Song) error {
 	updateOption := options.UpdateOptions{
 		Upsert: &upsertBool,
 	}
-	_, err := driver.Mongo.ConnectCollection("song_chords", "songs").UpdateOne(ctx, filter, update, &updateOption)
+	_, err := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").UpdateOne(ctx, filter, update, &updateOption)
 	return err
 }
 func DeleteSong(ctx context.Context, title string) error {
-	_, err := driver.Mongo.ConnectCollection("song_chords", "songs").DeleteOne(ctx, bson.M{"title": title})
+	_, err := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").DeleteOne(ctx, bson.M{"title": title})
 	return err
 }
