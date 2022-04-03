@@ -61,6 +61,12 @@ func (r *queryResolver) SongByID(ctx context.Context, id string) (*model.Song, e
 	return &song, err
 }
 
+func (r *queryResolver) SongsRecommend(ctx context.Context, id string, number int) ([]*model.Song, error) {
+	songs, err := songRepo.GetSongsRecommend(context.Background(), id, number)
+
+	return songs, err
+}
+
 // Mutation returns generated.MutationResolver implementation.
 func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
 

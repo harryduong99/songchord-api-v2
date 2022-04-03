@@ -29,6 +29,23 @@ func GetSongById(ctx context.Context, id string) (model.Song, error) {
 	return song, error
 }
 
+func GetSongsRecommend(ctx context.Context, id string, numberOfSong int) ([]*model.Song, error) {
+	var song model.Song
+	var songs []*model.Song
+	pipeline := []bson.E{bson.E{"$sample", bson.E{"size", numberOfSong}}}
+	cur, err := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").Aggregate(context.TODO(), pipeline)
+
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	for cur.Next(ctx) {
+		cur.Decode(&song)
+		songs = append(songs, &song)
+	}
+	return songs, err
+}
+
 func GetSongList(ctx context.Context, start int, limit int) ([]*model.Song, error) {
 	var song model.Song
 	var songs []*model.Song
@@ -91,6 +108,7 @@ func UpdateSong(ctx context.Context, song model.Song) error {
 	_, err := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").UpdateOne(ctx, filter, update, &updateOption)
 	return err
 }
+
 func DeleteSong(ctx context.Context, title string) error {
 	_, err := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").DeleteOne(ctx, bson.M{"title": title})
 	return err
