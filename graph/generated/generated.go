@@ -374,7 +374,8 @@ type Query {
   songIds: [String!]
   songById(id: ID!): Song
   songsRecommend(id: String!, number: Int!): [Song!]!
-}`, BuiltIn: false},
+}
+`, BuiltIn: false},
 }
 var parsedSchema = gqlparser.MustLoadSchema(sources...)
 

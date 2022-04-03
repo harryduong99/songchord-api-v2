@@ -32,7 +32,7 @@ func GetSongById(ctx context.Context, id string) (model.Song, error) {
 func GetSongsRecommend(ctx context.Context, id string, numberOfSong int) ([]*model.Song, error) {
 	var song model.Song
 	var songs []*model.Song
-	pipeline := []bson.E{bson.E{"$sample", bson.E{"size", numberOfSong}}}
+	pipeline := []bson.D{bson.D{{"$sample", bson.D{{"size", numberOfSong}}}}}
 	cur, err := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").Aggregate(context.TODO(), pipeline)
 
 	if err != nil {
