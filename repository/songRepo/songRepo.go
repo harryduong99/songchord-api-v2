@@ -10,6 +10,7 @@ import (
 	"github.com/harryduong99/songchord-api-v2/driver"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
@@ -24,7 +25,12 @@ func GetSongByName(ctx context.Context, title string) (model.Song, error) {
 
 func GetSongById(ctx context.Context, id string) (model.Song, error) {
 	var song model.Song
-	data := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").FindOne(ctx, bson.M{"id": id})
+	objectId, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		log.Println("Invalid id")
+	}
+
+	data := driver.Mongo.ConnectCollection(config.DB_NAME, "songs").FindOne(ctx, bson.M{"_id": objectId})
 	error := data.Decode(&song)
 	return song, error
 }
