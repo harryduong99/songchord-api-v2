@@ -55,6 +55,7 @@ type ComplexityRoot struct {
 	}
 
 	Query struct {
+		Comment        func(childComplexity int, id string) int
 		Song           func(childComplexity int, title string) int
 		SongByID       func(childComplexity int, id string) int
 		SongIds        func(childComplexity int) int
@@ -87,6 +88,7 @@ type QueryResolver interface {
 	SongIds(ctx context.Context) ([]string, error)
 	SongByID(ctx context.Context, id string) (*model.Song, error)
 	SongsRecommend(ctx context.Context, id string, number int) ([]*model.Song, error)
+	Comment(ctx context.Context, id string) ([]*model.Comment, error)
 }
 
 type executableSchema struct {
@@ -148,6 +150,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Mutation.CreateSong(childComplexity, args["input"].(model.NewSong)), true
+
+	case "Query.comment":
+		if e.complexity.Query.Comment == nil {
+			break
+		}
+
+		args, err := ec.field_Query_comment_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Query.Comment(childComplexity, args["id"].(string)), true
 
 	case "Query.song":
 		if e.complexity.Query.Song == nil {
@@ -334,7 +348,6 @@ type User {
 }
 
 type Song {
-  # ID       primitive.ObjectID ` + "`" + `bson:"_id" json:"id"` + "`" + `
   id: String!
   title: String!
   content: String!
@@ -374,6 +387,7 @@ type Query {
   songIds: [String!]
   songById(id: ID!): Song
   songsRecommend(id: String!, number: Int!): [Song!]!
+  comment(id: ID!): [Comment!]!
 }
 `, BuiltIn: false},
 }
@@ -425,6 +439,21 @@ func (ec *executionContext) field_Query___type_args(ctx context.Context, rawArgs
 		}
 	}
 	args["name"] = arg0
+	return args, nil
+}
+
+func (ec *executionContext) field_Query_comment_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 string
+	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
+		arg0, err = ec.unmarshalNID2string(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["id"] = arg0
 	return args, nil
 }
 
@@ -922,6 +951,48 @@ func (ec *executionContext) _Query_songsRecommend(ctx context.Context, field gra
 	res := resTmp.([]*model.Song)
 	fc.Result = res
 	return ec.marshalNSong2ᚕᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐSongᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _Query_comment(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_Query_comment_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	fc.Args = args
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().Comment(rctx, args["id"].(string))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]*model.Comment)
+	fc.Result = res
+	return ec.marshalNComment2ᚕᚖgithubᚗcomᚋharryduong99ᚋsongchordᚑapiᚑv2ᚋgraphᚋmodelᚐCommentᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -2640,6 +2711,20 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_songsRecommend(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		case "comment":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_comment(ctx, field)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}

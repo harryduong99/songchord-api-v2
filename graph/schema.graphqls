@@ -47,4 +47,5 @@ type Query {
   songIds: [String!]
   songById(id: ID!): Song
   songsRecommend(id: String!, number: Int!): [Song!]!
+  comment(id: ID!): [Comment!]!
 }

@@ -67,6 +67,10 @@ func (r *queryResolver) SongsRecommend(ctx context.Context, id string, number in
 	return songs, err
 }
 
+func (r *queryResolver) Comment(ctx context.Context, id string) ([]*model.Comment, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
 // Mutation returns generated.MutationResolver implementation.
 func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
 
